@@ -1,3 +1,3 @@
 <?
-$PERM["moi-obyavleniya"]["G7"]="X";
+$PERM["moi-obyavleniya"]["7"]="R";
 ?>
