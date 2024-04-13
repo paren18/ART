@@ -1,8 +1,15 @@
 <?
 $aMenuLinks = Array(
 	Array(
-		"Вакансии", 
-		"/o-servise/vakansii/", 
+		"Главная страница", 
+		"/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Сервис", 
+		"/o-servise/", 
 		Array(), 
 		Array(), 
 		"" 
@@ -15,22 +22,15 @@ $aMenuLinks = Array(
 		"" 
 	),
 	Array(
+		"Объявление", 
+		"/obyavleniya/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
 		"Новости", 
-		"/o-servise/novosti/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Агенты", 
-		"/o-servise/agenty/", 
-		Array(), 
-		Array(), 
-		"" 
-	),
-	Array(
-		"Агенты", 
-		"/o-servise/agenty.php", 
+		"/news/", 
 		Array(), 
 		Array(), 
 		"" 
