@@ -10,6 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
+use \Bitrix\Main\Localization\Loc;
 $this->setFrameMode(true);
 ?>
 <div class="pt-5">
@@ -108,51 +109,61 @@ $this->setFrameMode(true);
     </div>
 </div>
 <div class="site-section site-section-sm bg-light">
-<div class="container">
-    <div class="row mb-5">
-        <div class="col-12">
-            <div class="site-section-title">
-                <h2>New Properties for You</h2>
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-12">
+                <div class="site-section-title">
+                    <h2><?=Loc::getMessage("PROIT");?></h2>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="row mb-5">
-        <?foreach($arResult["ITEMS"] as $arItem):?>
-            <div class="col-md-6 col-lg-4 mb-4">
-                <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="prop-entry d-block">
-                    <figure>
-                        <img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>" class="img-fluid">
-                    </figure>
-                    <div class="prop-text">
-                        <div class="inner">
-                            <span class="price rounded">₽<?=$arItem["PROPERTIES"]["PRICE"]["VALUE"]?></span>
-                            <h3 class="title"><?=$arItem["NAME"]?></h3>
-                            <p class="location"><?=$arItem["DISPLAY_PROPERTIES"]["LOCATION"]["VALUE"]?></p>
-                        </div>
-                        <div class="prop-more-info">
-                            <div class="inner d-flex">
-                                <div class="col">
-                                    <span>Площадь:</span>
-                                    <strong><?=$arItem["DISPLAY_PROPERTIES"]["TOTALAREA"]["VALUE"]?></strong>
-                                </div>
-                                <div class="col">
-                                    <span>Этажи:</span>
-                                    <strong><?=$arItem["DISPLAY_PROPERTIES"]["NUMFLOORS"]["VALUE"]?></strong>
-                                </div>
-                                <div class="col">
-                                    <span>Ванна:</span>
-                                    <strong><?=$arItem["DISPLAY_PROPERTIES"]["NUMOFBATH"]["VALUE"]?></strong>
-                                </div>
-                                <div class="col">
-                                    <span>Гараж:</span>
-                                    <strong><?=$arItem["DISPLAY_PROPERTIES"]["AVAOFGARAGE"]["VALUE"]?></strong>
+        <div class="row mb-5">
+            <?foreach($arResult["ITEMS"] as $arItem):?>
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <a href="<?=$arItem["DETAIL_PAGE_URL"]?>" class="prop-entry d-block">
+                        <figure>
+                            <img src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>" alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>" class="img-fluid">
+                        </figure>
+                        <div class="prop-text">
+                            <div class="inner">
+                                <span class="price rounded">₽<?=$arItem["PROPERTIES"]["PRICE"]["VALUE"]?></span>
+                                <h3 class="title"><?=$arItem["NAME"]?></h3>
+                                <p class="location"><?=$arItem["PREVIEW_TEXT"]?></p>
+                            </div>
+                            <div class="prop-more-info">
+                                <div class="inner d-flex">
+                                    <div class="col">
+                                        <span><?=Loc::getMessage("TOTALAREA");?></span>
+                                        <strong><?=$arItem["DISPLAY_PROPERTIES"]["TOTALAREA"]["VALUE"]?></strong>
+                                    </div>
+                                    <div class="col">
+                                        <span><?=Loc::getMessage("NUMFLOORS");?></span>
+                                        <strong><?=$arItem["DISPLAY_PROPERTIES"]["NUMFLOORS"]["VALUE"]?></strong>
+                                    </div>
+                                    <div class="col">
+                                        <span><?=Loc::getMessage("NUMOFBATH");?></span>
+                                        <strong><?=$arItem["DISPLAY_PROPERTIES"]["NUMOFBATH"]["VALUE"]?></strong>
+                                    </div>
+                                    <div class="col">
+                                        <span><?=Loc::getMessage("AVAOFGARAGE");?></span>
+                                        <strong><?=$arItem["DISPLAY_PROPERTIES"]["AVAOFGARAGE"]["VALUE"]?></strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                    </a>
+                </div>
+            <?endforeach;?>
+        </div>
+        <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="site-pagination">
+                        <?=$arResult["NAV_STRING"]?>
                     </div>
-                </a>
+                </div>
             </div>
-        <?endforeach;?>
+        <?endif;?>
     </div>
     <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
         <div class="row">
@@ -163,15 +174,3 @@ $this->setFrameMode(true);
             </div>
         </div>
     <?endif;?>
-</div>
-    <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="site-pagination">
-                    <?=$arResult["NAV_STRING"]?>
-                </div>
-            </div>
-        </div>
-    <?endif;?>
-</div>
-

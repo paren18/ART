@@ -10,6 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
+use \Bitrix\Main\Localization\Loc;
 $this->setFrameMode(true);
 ?>
 <?php if ($arParams["DISPLAY_PICTURE"] != "N" && is_array($arResult["DETAIL_PICTURE"])): ?>
@@ -19,7 +20,7 @@ $this->setFrameMode(true);
     <div class="container">
         <div class="row align-items-center justify-content-center text-center">
             <div class="col-md-10">
-                <span class="d-inline-block text-white px-3 mb-3 property-offer-type rounded">Property Details of</span>
+                <span class="d-inline-block text-white px-3 mb-3 property-offer-type rounded"><?=Loc::getMessage("Details");?></span>
                 <h1 class="mb-2"><?=$arResult["NAME"]?></h1>
                 <p class="mb-5"><strong class="h2 text-success font-weight-bold">₽<?=$arResult["PROPERTIES"]["PRICE"]["VALUE"]?></strong></p>
             </div>
@@ -48,17 +49,17 @@ $this->setFrameMode(true);
                         <div class="col-md-6">
                             <ul class="property-specs-wrap mb-3 mb-lg-0  float-lg-right">
                                 <li>
-                                    <span class="property-specs">Дата изменения</span>
+                                    <span class="property-specs"><?=Loc::getMessage("TIMESTAMP");?></span>
                                     <span class="property-specs-number"><?= $arResult["TIMESTAMP_X"]?></span>
 
                                 </li>
                                 <li>
-                                    <span class="property-specs">Этажи</span>
+                                    <span class="property-specs"><?=Loc::getMessage("NUMFLOORS");?></span>
                                     <span class="property-specs-number"><?=$arResult["DISPLAY_PROPERTIES"]["NUMFLOORS"]["VALUE"]?></span>
 
                                 </li>
                                 <li>
-                                    <span class="property-specs">Общая площадь</span>
+                                    <span class="property-specs"><?=Loc::getMessage("TOTALAREA");?></span>
                                     <span class="property-specs-number"><?=$arResult["PROPERTIES"]["TOTALAREA"]["VALUE"]?></span>
 
                                 </li>
@@ -67,51 +68,49 @@ $this->setFrameMode(true);
                     </div>
                     <div class="row mb-5">
                         <div class="col-md-6 col-lg-4 text-left border-bottom border-top py-3">
-                            <span class="d-inline-block text-black mb-0 caption-text">Количество санузлов</span>
+                            <span class="d-inline-block text-black mb-0 caption-text"><?=Loc::getMessage("NUMOFBATH");?></span>
                             <strong class="d-block"><?=$arResult["DISPLAY_PROPERTIES"]["NUMOFBATH"]["VALUE"]?></strong>
                         </div>
                         <div class="col-md-6 col-lg-4 text-left border-bottom border-top py-3">
-                            <span class="d-inline-block text-black mb-0 caption-text">Наличие гаража</span>
+                            <span class="d-inline-block text-black mb-0 caption-text"><?=Loc::getMessage("AVAOFGARAGE");?></span>
                             <strong class="d-block"><?=$arResult["DISPLAY_PROPERTIES"]["AVAOFGARAGE"]["VALUE"]?></strong>
                         </div>
                     </div>
-                    <h2 class="h4 text-black">Детальное описание</h2>
+                    <h2 class="h4 text-black"><?=Loc::getMessage("DETAIL_TEXT");?></h2>
                     <p><?=$arResult["DETAIL_TEXT"]?></p>
 
                     <div class="row mt-5">
                         <div class="col-12">
-                            <h2 class="h4 text-black mb-3">Галерея изображений</h2>
+                            <h2 class="h4 text-black mb-3"><?=Loc::getMessage("GALERPICS");?></h2>
                         </div>
                         <div class="row mt-5">
-                            <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["VALUE"] as $imageID): ?>
-                                <?php
-                                $imageSrc = CFile::GetPath($imageID);
-                                ?>
+                            <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["FILE_VALUE"] as $imageInfo): ?>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                                    <a href="<?= $imageSrc ?>" class="image-popup gal-item">
-                                        <img src="<?= $imageSrc ?>" alt="Image" class="img-fluid">
+                                    <a href="<?= $imageInfo["SRC"] ?>" class="image-popup gal-item">
+                                        <img src="<?= $imageInfo["SRC"] ?>" alt="<?= $imageInfo["DESCRIPTION"] ?>" class="img-fluid">
                                     </a>
                                 </div>
                             <?php endforeach; ?>
+
                         </div>
                     </div>
                     <div class="row mt-5">
                         <div class="col-md-12">
-                            <h4 class="text-black">Дополнительные материалы</h4>
-                           <div class="h4 text-black"><?php
-                               foreach ($arResult['PROPERTIES']['DOPMAT']['VALUE'] as $dop) {
-                                   echo "$dop<br>";
-                               }
-                               ?></div>
+                            <h4 class="text-black"><?=Loc::getMessage("DOPMAT");?></h4>
+                           <div class="h4 text-black">
+                                <?php foreach ($arResult['PROPERTIES']['DOPMAT']['VALUE'] as $fileId): ?>
+                               <?php $fileInfo = CFile::GetFileArray($fileId); ?>
+                               <?php if ($fileInfo): ?>
+                               <a href="<?= $fileInfo['SRC'] ?>" target="_blank"><?= $fileInfo['ORIGINAL_NAME'] ?></a><br>
+                               <?php endif; ?>
+                               <?php endforeach; ?>
+                           </div>
                         </div>
                     </div>
 
-
-
-                    <!-- Блок "Ссылки на внешние ресурсы" -->
                     <div class="row mt-5">
                         <div class="col-md-12">
-                            <h2 class="h4 text-black">Ссылки на внешние ресурсы</h2>
+                            <h2 class="h4 text-black"><?=Loc::getMessage("LINKS");?></h2>
                             <div class="h4 text-black"><?php
                                 foreach ($arResult['PROPERTIES']['LINKS']['VALUE'] as $link) {
                                     echo "<a href='$link'>$link</a><br>";
@@ -121,8 +120,6 @@ $this->setFrameMode(true);
                     </div>
                 </div>
             </div>
-
-
 
 
             <div class="col-lg-4 pl-md-5">
