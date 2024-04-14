@@ -10,6 +10,7 @@
 /** @var string $templateFolder */
 /** @var string $componentPath */
 /** @var CBitrixComponent $component */
+use \Bitrix\Main\Localization\Loc;
 $this->setFrameMode(true);
 ?>
 <div class="site-section">
@@ -17,7 +18,7 @@ $this->setFrameMode(true);
         <div class="row justify-content-center">
             <div class="col-md-7 text-center mb-5">
                 <div class="site-section-title">
-                    <h2>Our Services</h2>
+                    <h2><?=Loc::getMessage("Our_Services");?></h2>
                 </div>
             </div>
         </div>
@@ -31,13 +32,14 @@ $this->setFrameMode(true);
                         ?>
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
-                                <a href="<? echo $arItem["DETAIL_PAGE_URL"] ?>" class="service text-center border rounded">
-                                    <span class="news-date-time"><? echo $arItem["DISPLAY_ACTIVE_FROM"] ?>&nbsp;&nbsp;</span>
-                                    <h2 class="service-heading"><? echo $arItem["NAME"] ?></h2>
-                                    <p><span class="read-more">Learn More</span></p>
+                                <a href="<?=$arItem["PROPERTY_LINKS_VALUE"]?>" class="service text-center border rounded">
+                                    <span class="news-date-time"><?= $arItem["DISPLAY_ACTIVE_FROM"] ?>&nbsp;&nbsp;</span>
+                                    <h2 class="service-heading"><?= $arItem["NAME"] ?></h2>
+                                    <p><span class="read-more"><?=Loc::getMessage("Learn_More");?></span></p>
                                 </a>
                             </div>
                         </div>
+
                     <? endforeach; ?>
                 </div>
             </div>
