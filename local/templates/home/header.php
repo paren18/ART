@@ -57,22 +57,26 @@ IncludeTemplateLangFile(__FILE__);
             <div class="row align-items-center">
                 <div class="col-6 col-md-6">
 
-                <?$APPLICATION->IncludeComponent(
-                    "bitrix:main.include",
-                    "",
-                    Array(
-                        "AREA_FILE_SHOW" => "page",
-                        "AREA_FILE_SUFFIX" => "inc_1",
-                        "EDIT_TEMPLATE" => ""
-                    )
-                );?>
+                    <?$APPLICATION->IncludeComponent(
+                        "bitrix:main.include",
+                        ".default",
+                        array(
+                            "AREA_FILE_SHOW" => "file",
+                            "AREA_FILE_SUFFIX" => "index_inc_1",
+                            "EDIT_TEMPLATE" => "",
+                            "PATH" => "/index_inc_1.php",
+                            "COMPONENT_TEMPLATE" => ".default"
+                        ),
+                        false
+                    );?>
                     <?$APPLICATION->IncludeComponent(
                         "bitrix:main.include",
                         "",
                         Array(
-                            "AREA_FILE_SHOW" => "page",
-                            "AREA_FILE_SUFFIX" => "inc_2",
-                            "EDIT_TEMPLATE" => ""
+                            "AREA_FILE_SHOW" => "file",
+                            "AREA_FILE_SUFFIX" => "index_inc_2",
+                            "EDIT_TEMPLATE" => "",
+                            "PATH" => "/index_inc_2.php"
                         )
                     );?>
 
@@ -82,9 +86,10 @@ IncludeTemplateLangFile(__FILE__);
                         "bitrix:main.include",
                         "",
                         Array(
-                            "AREA_FILE_SHOW" => "page",
-                            "AREA_FILE_SUFFIX" => "inc_3",
-                            "EDIT_TEMPLATE" => ""
+                            "AREA_FILE_SHOW" => "file",
+                            "AREA_FILE_SUFFIX" => "index_inc_3",
+                            "EDIT_TEMPLATE" => "",
+                            "PATH" => "/index_inc_3.php"
                         )
                     );?>
                 </div>
@@ -100,35 +105,52 @@ IncludeTemplateLangFile(__FILE__);
                             "bitrix:main.include",
                             "",
                             Array(
-                                "AREA_FILE_SHOW" => "page",
-                                "AREA_FILE_SUFFIX" => "inc1",
-                                "EDIT_TEMPLATE" => ""
+                                "AREA_FILE_SHOW" => "file",
+                                "AREA_FILE_SUFFIX" => "index_inc1",
+                                "EDIT_TEMPLATE" => "",
+                                "PATH" => "/index_inc1.php"
                             )
                         );?>
                     </h1>
                 </div>
                 <div class="col-4 col-md-4 col-lg-8">
-                <?$APPLICATION->IncludeComponent("bitrix:menu", "menu", Array(
-                    "ALLOW_MULTI_SELECT" => "N",	// Разрешить несколько активных пунктов одновременно
-                    "CHILD_MENU_TYPE" => "left",	// Тип меню для остальных уровней
-                    "DELAY" => "N",	// Откладывать выполнение шаблона меню
-                    "MAX_LEVEL" => "1",	// Уровень вложенности меню
-                    "MENU_CACHE_GET_VARS" => array(	// Значимые переменные запроса
-                        0 => "",
-                    ),
-                    "MENU_CACHE_TIME" => "3600",	// Время кеширования (сек.)
-                    "MENU_CACHE_TYPE" => "A",	// Тип кеширования
-                    "MENU_CACHE_USE_GROUPS" => "Y",	// Учитывать права доступа
-                    "ROOT_MENU_TYPE" => "left",	// Тип меню для первого уровня
-                    "USE_EXT" => "N",	// Подключать файлы с именами вида .тип_меню.menu_ext.php
-                ),
-                    false
-                );?>
+                    <?$APPLICATION->IncludeComponent(
+                        "bitrix:menu",
+                        "menu",
+                        array(
+                            "COMPONENT_TEMPLATE" => "menu",
+                            "ROOT_MENU_TYPE" => "top",
+                            "MENU_CACHE_TYPE" => "A",
+                            "MENU_CACHE_TIME" => "3600",
+                            "MENU_CACHE_USE_GROUPS" => "Y",
+                            "MENU_CACHE_GET_VARS" => array(
+                            ),
+                            "MAX_LEVEL" => "3",
+                            "CHILD_MENU_TYPE" => "left",
+                            "USE_EXT" => "Y",
+                            "DELAY" => "N",
+                            "ALLOW_MULTI_SELECT" => "N",
+                            "MENU_THEME" => "site"
+                        ),
+                        false
+                    );?>
                 </div>
             </div>
 
-
-            </div>
         </div>
     </div>
 </div>
+</div>
+<?if ( $APPLICATION->GetCurDir() != "/" )
+{$APPLICATION->IncludeComponent(
+    "bitrix:breadcrumb",
+    "bread",
+    Array(
+        "PATH" => "",
+        "SITE_ID" => "s1",
+        "START_FROM" => "0"
+    )
+);}?>
+
+
+
