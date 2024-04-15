@@ -12,6 +12,7 @@
 /** @var CBitrixComponent $component */
 use \Bitrix\Main\Localization\Loc;
 $this->setFrameMode(true);
+$sectionTitle = $arParams["SECTION_TITLE"];
 ?>
 <div class="pt-5">
     <div class="container">
@@ -113,7 +114,7 @@ $this->setFrameMode(true);
         <div class="row mb-5">
             <div class="col-12">
                 <div class="site-section-title">
-                    <h2><?=Loc::getMessage("PROIT");?></h2>
+                    <h2><?= $APPLICATION->GetTitle() ?></h2>
                 </div>
             </div>
         </div>
