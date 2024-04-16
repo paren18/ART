@@ -156,7 +156,14 @@ $sectionTitle = $arParams["SECTION_TITLE"];
                 </div>
             <?endforeach;?>
         </div>
-        <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-                        <?=$arResult["NAV_STRING"]?>
-        <?endif;?>
+            <div class="row">
+                <div class="col-md-12 text-center">
+                    <div class="site-pagination">
+                        <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
+                            <?=$arResult["NAV_STRING"]?>
+                        <?endif;?>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>

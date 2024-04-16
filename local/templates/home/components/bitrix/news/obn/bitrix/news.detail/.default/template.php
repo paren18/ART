@@ -96,9 +96,12 @@ $this->setFrameMode(true);
                             </div>
                             <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["VALUE"] as $imageID): ?>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                                    <a href="<?= CFile::GetPath($imageID) ?>" class="image-popup gal-item">
-                                        <img src="<?= CFile::GetPath($imageID) ?>" alt="Image" class="img-fluid">
-                                    </a>
+                                    <?php
+                                    $imageSrc = CFile::GetPath($imageID);
+                                    ?>
+                                        <a href="<?= $imageSrc ?>" class="image-popup gal-item">
+                                            <img src="<?= $imageSrc ?>" alt="Image" class="img-fluid">
+                                        </a>
                                 </div>
                             <?php endforeach; ?>
                         <?php endif; ?>

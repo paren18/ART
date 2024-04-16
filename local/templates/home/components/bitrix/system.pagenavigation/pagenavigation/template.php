@@ -23,26 +23,24 @@ $colorSchemes = array(
 );
 $colorScheme = $colorSchemes[$arParams["TEMPLATE_THEME"] ?? ''] ?? '';
 ?>
+<?php
+$NavPageCount = $arResult["NavPageCount"];
+$NavPageNomer = $arResult["NavPageNomer"];
+$NavNum = $arResult["NavNum"];
+$sUrlPath = $arResult["sUrlPath"];
+$strNavQueryString = $arResult["NavQueryString"];
+?>
 
-<div class="row">
-    <div class="col-md-12 text-center">
-        <div class="site-pagination pagination">
-            <?php for ($i = 1; $i <= $arResult["NavPageCount"]; $i++): ?>
-                <?php if ($i == $arResult["NavPageNomer"]): ?>
-                    <a href="#" class="active"><?= $i ?></a>
-                <?php else: ?>
-                    <a href="<?= $arResult["sUrlPath"] ?>?<?= $strNavQueryString ?>PAGEN_<?= $arResult["NavNum"] ?>=<?= $i ?>"><?= $i ?></a>
-                <?php endif ?>
-            <?php endfor ?>
-        </div>
-    </div>
+<div class="site-pagination">
+    <?php for ($i = 1; $i <= $NavPageCount; $i++): ?>
+        <?php if ($i == $NavPageNomer): ?>
+            <a href="#" class="active"><?= $i ?></a>
+        <?php else: ?>
+            <a href="<?= $sUrlPath ?>?<?= $strNavQueryString ?>PAGEN_<?= $NavNum ?>=<?= $i ?>"><?= $i ?></a>
+        <?php endif ?>
+    <?php endfor ?>
+    <?php if ($NavPageCount > 5): ?>
+        <span>...</span>
+        <a href="<?= $sUrlPath ?>?<?= $strNavQueryString ?>PAGEN_<?= $NavNum ?>=<?= $NavPageCount ?>"><?= $NavPageCount ?></a>
+    <?php endif ?>
 </div>
-
-<style>
-    .site-pagination.pagination {
-        display: inline-block;
-        margin-top: 20px;
-        margin-bottom: 20px;
-    }
-    
-</style>
