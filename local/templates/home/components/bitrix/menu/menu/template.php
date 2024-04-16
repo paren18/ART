@@ -45,12 +45,6 @@
                                     <?else:?>
                                         <li<?if ($arItem["SELECTED"]):?> class="item-selected active"<?endif?>><a href="<?=$arItem["LINK"]?>"><?=$arItem["TEXT"]?></a></li>
                                     <?endif?>
-                                <?else:?>
-                                    <?if ($arItem["DEPTH_LEVEL"] == 1):?>
-                                        <li class="<?if ($arItem["SELECTED"]):?>active <?endif?>"><a href="" class="<?if ($arItem["SELECTED"]):?>root-item-selected<?else:?>root-item<?endif?>" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
-                                    <?else:?>
-                                        <li class="active"><a href="" class="denied" title="<?=GetMessage("MENU_ITEM_ACCESS_DENIED")?>"><?=$arItem["TEXT"]?></a></li>
-                                    <?endif?>
                                 <?endif?>
                             <?endif?>
                             <?$previousLevel = $arItem["DEPTH_LEVEL"];?>

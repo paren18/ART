@@ -33,7 +33,7 @@ $this->setFrameMode(true);
                         <div class="col-md-6 col-lg-4 mb-4">
                             <div class="news-item" id="<?=$this->GetEditAreaId($arItem['ID']);?>">
                                 <a href="<?=$arItem["PROPERTY_LINKS_VALUE"]?>" class="service text-center border rounded">
-                                    <span class="news-date-time"><?= $arItem["DISPLAY_ACTIVE_FROM"] ?>&nbsp;&nbsp;</span>
+                                    <span class="<?=$arItem["PROPERTY_CLASS_VALUE"]?>"><?= $arItem["DISPLAY_ACTIVE_FROM"]?></span>
                                     <h2 class="service-heading"><?= $arItem["NAME"] ?></h2>
                                     <p><span class="read-more"><?=Loc::getMessage("Learn_More");?></span></p>
                                 </a>
