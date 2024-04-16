@@ -64,8 +64,9 @@ $this->setFrameMode(true);
                         </div>
                     </a>
                 </div>
+            </div>
             <?endforeach;?>
-                </div>
+
         </div>
         <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
             <div class="row">
@@ -77,15 +78,6 @@ $this->setFrameMode(true);
             </div>
         <?endif;?>
     </div>
-    <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="site-pagination">
-                    <?=$arResult["NAV_STRING"]?>
-                </div>
-            </div>
-        </div>
-    <?endif;?>
 </div>
 
 

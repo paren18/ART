@@ -127,7 +127,7 @@ $sectionTitle = $arParams["SECTION_TITLE"];
                         </figure>
                         <div class="prop-text">
                             <div class="inner">
-                                <span class="price rounded">₽<?=$arItem["PROPERTIES"]["PRICE"]["VALUE"]?></span>
+                                <span class="price rounded">₽<?=$arItem["DISPLAY_PROPERTIES"]["PRICE"]["VALUE"]?></span>
                                 <h3 class="title"><?=$arItem["NAME"]?></h3>
                                 <p class="location"><?=$arItem["PREVIEW_TEXT"]?></p>
                             </div>
@@ -157,21 +157,6 @@ $sectionTitle = $arParams["SECTION_TITLE"];
             <?endforeach;?>
         </div>
         <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-            <div class="row">
-                <div class="col-md-12 text-center">
-                    <div class="site-pagination">
                         <?=$arResult["NAV_STRING"]?>
-                    </div>
-                </div>
-            </div>
         <?endif;?>
     </div>
-    <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <div class="site-pagination">
-                    <?=$arResult["NAV_STRING"]?>
-                </div>
-            </div>
-        </div>
-    <?endif;?>
