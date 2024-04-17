@@ -41,7 +41,10 @@ $this->setFrameMode(true);
                 <div class="mb-5">
                     <div class="slide-one-item home-slider owl-carousel">
                         <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["VALUE"] as $imageID): ?>
-                            <div><img src="<?= CFile::GetPath($imageID) ?>" alt="Image" class="img-fluid"></div>
+                            <?php
+                            $imageSrc = CFile::GetPath($imageID);
+                            ?>
+                            <div><img src="<?= $imageSrc ?>" alt="Image" class="img-fluid"></div>
                         <?php endforeach; ?>
                     </div>
 
@@ -94,16 +97,21 @@ $this->setFrameMode(true);
                             <div class="col-12">
                                 <h2 class="h4 text-black mb-3"><?= Loc::getMessage("GALERPICS"); ?></h2>
                             </div>
-                            <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["VALUE"] as $imageID): ?>
+                            <?php if (count($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["VALUE"]) == 1): ?>
                                 <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
-                                    <?php
-                                    $imageSrc = CFile::GetPath($imageID);
-                                    ?>
-                                        <a href="<?= $imageSrc ?>" class="image-popup gal-item">
-                                            <img src="<?= $imageSrc ?>" alt="Image" class="img-fluid">
-                                        </a>
+                                    <a href="<?= $arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["FILE_VALUE"]["SRC"] ?>" class="image-popup gal-item">
+                                        <img src="<?= $arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["FILE_VALUE"]["SRC"] ?>" alt="Image" class="img-fluid">
+                                    </a>
                                 </div>
-                            <?php endforeach; ?>
+                            <?php else: ?>
+                                <?php foreach ($arResult["DISPLAY_PROPERTIES"]["GALERPICS"]["FILE_VALUE"] as $image): ?>
+                                    <div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+                                        <a href="<?= $image["SRC"] ?>" class="image-popup gal-item">
+                                            <img src="<?= $image["SRC"] ?>" alt="Image" class="img-fluid">
+                                        </a>
+                                    </div>
+                                <?php endforeach; ?>
+                            <?php endif; ?>
                         <?php endif; ?>
                     </div>
                     <div class="row mt-5">
@@ -111,13 +119,18 @@ $this->setFrameMode(true);
                             <div class="col-md-12">
                                 <h4 class="text-black"><?= Loc::getMessage("DOPMAT"); ?></h4>
                                 <div class="h4 text-black">
-                                    <?php foreach ($arResult['DISPLAY_PROPERTIES']['DOPMAT']['VALUE'] as $fileId): ?>
-                                        <?php $fileInfo = CFile::GetFileArray($fileId); ?>
-                                        <?php if ($fileInfo): ?>
-                                            <a href="<?= $fileInfo['SRC'] ?>"
-                                               target="_blank"><?= $fileInfo['ORIGINAL_NAME'] ?></a><br>
-                                        <?php endif; ?>
-                                    <?php endforeach; ?>
+                                    <?php if (count($arResult["DISPLAY_PROPERTIES"]["DOPMAT"]["VALUE"]) == 1): ?>
+                                        <a href="<?= $arResult["DISPLAY_PROPERTIES"]["DOPMAT"]["FILE_VALUE"]["SRC"] ?>"
+                                           target="_blank"><?= $arResult["DISPLAY_PROPERTIES"]["DOPMAT"]["FILE_VALUE"]['ORIGINAL_NAME']?></a><br>
+                                    <?php else: ?>
+                                        <?php foreach ($arResult['DISPLAY_PROPERTIES']['DOPMAT']['VALUE'] as $fileId): ?>
+                                            <?php $fileInfo = CFile::GetFileArray($fileId); ?>
+                                            <?php if ($fileInfo): ?>
+                                                <a href="<?= $fileInfo['SRC'] ?>"
+                                                   target="_blank"><?= $fileInfo['ORIGINAL_NAME'] ?></a><br>
+                                            <?php endif; ?>
+                                        <?php endforeach; ?>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         <?php endif; ?>
