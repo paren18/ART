@@ -335,6 +335,11 @@ class Agent20240414215216 extends Version
 
     public function down()
     {
-        //your code ...
+        $helper = $this->getHelperManager();
+        $hlblockId = $helper->Hlblock()->getHlblockId('RealEstateAgents');
+
+        if ($hlblockId) {
+            $helper->Hlblock()->deleteHlblock($hlblockId);
+        }
     }
 }
