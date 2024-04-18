@@ -1,15 +1,27 @@
-<?
+<?php
+// обратите внимание на эту константу
 define("NEED_AUTH", true);
 require($_SERVER["DOCUMENT_ROOT"]."/bitrix/header.php");
-
-if (is_string($_REQUEST["backurl"]) && mb_strpos($_REQUEST["backurl"], "/") === 0)
-{
-	LocalRedirect($_REQUEST["backurl"]);
-}
-
-$APPLICATION->SetTitle("Вход на сайт");
+$APPLICATION->SetTitle("Авторизация и регистрация");
+?><p>
+	 Вы зарегистрированы и успешно авторизовались.
+</p>
+ <?php
+// ссылка для выхода из личного кабинета
+$logout = $APPLICATION->GetCurPageParam(
+    array(
+        "login",
+        "logout",
+        "register",
+        "forgot_password",
+        "change_password"
+    )
+);
 ?>
-<p>Вы зарегистрированы и успешно авторизовались.</p>
-
-<p><a href="<?=SITE_DIR?>">Вернуться на главную страницу</a></p>
-<?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>
+<p>
+    <a href="/?logout=yes&<?=bitrix_sessid_get()?>">
+        Выйти
+    </a>
+</p><?php
+require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");
+?>
