@@ -391,13 +391,7 @@ class AgentsList extends CBitrixComponent implements Controllerable, Errorable
         CUserOptions::SetOption('mcart_agent', 'options_agents_star', $value, false, $USER->GetID());
 
         // Регистрация кеш-тега для сброса кеша компонента при изменении списка избранных агентов
-        $this->taggedCache->registerTag('hlblock_table_name_' . $arHlblock['TABLE_NAME']);
-
-        // Если кеш существует, сбрасываем его
-        if ($this->cache->startDataCache()) {
-            $this->cache->abortDataCache(); // Сброс кеша компонента
-        }
-
+        
         // Устанавливаем ключ 'action' со значением 'success' в массиве $result
         $result['action'] = 'success';
 
