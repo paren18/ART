@@ -1,0 +1,53 @@
+<?
+$aMenuLinks = Array(
+	Array(
+		"Компания", 
+		"/ekz1/company/", 
+		Array(), 
+		Array("DES"=>"Текст компании"), 
+		"" 
+	),
+	Array(
+		"Новости", 
+		"news/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Продукция", 
+		"products/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Услуги", 
+		"services/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Партнерам", 
+		"/ekz1/partneram/", 
+		Array(), 
+		Array("DESC"=>"пункт1"), 
+		"" 
+	),
+	Array(
+		"Отзывы", 
+		"/ekz1/rew/", 
+		Array(), 
+		Array(), 
+		"" 
+	),
+	Array(
+		"Поиск", 
+		"/ekz1/search/", 
+		Array(), 
+		Array(), 
+		"" 
+	)
+);
+?>
