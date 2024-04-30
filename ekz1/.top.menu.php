@@ -4,7 +4,7 @@ $aMenuLinks = Array(
 		"Компания", 
 		"/ekz1/company/", 
 		Array(), 
-		Array("DES"=>"Текст компании"), 
+		Array("DES"=>"текст для пункта Компания"), 
 		"" 
 	),
 	Array(

@@ -32,36 +32,21 @@ $this->setFrameMode(true);
             <?endif;?>
         </div>
     </div>
-    <div class="review-img-wrap">
-        <?if(!$arParams["HIDE_LINK_WHEN_NO_DETAIL"] || ($arItem["DETAIL_TEXT"] && $arResult["USER_HAVE_ACCESS"])):?>
-            <?php if (!empty($arItem["PREVIEW_PICTURE"]["SRC"])): ?>
-            <? else: ?>
-                <a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><img class="preview_picture" src="<?=SITE_TEMPLATE_PATH?>/assets/img/rew/no_photo.jpg" alt="img"></a>
-            <? endif;?>
-            <a href="<?=$arItem["DETAIL_PAGE_URL"]?>"><img
-                        class="preview_picture"
-                        border="0"
-                        src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
-                        width="<?=$arItem["PREVIEW_PICTURE"]["WIDTH"]?>"
-                        height="<?=$arItem["PREVIEW_PICTURE"]["HEIGHT"]?>"
-                        alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
-                        title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>"
-                        style="float:left"
-                /></a>
-        <?else:?>
-            <img
-                    class="preview_picture"
-                    border="0"
-                    src="<?=$arItem["PREVIEW_PICTURE"]["SRC"]?>"
-                    width="<?=$arItem["PREVIEW_PICTURE"]["WIDTH"]?>"
-                    height="<?=$arItem["PREVIEW_PICTURE"]["HEIGHT"]?>"
-                    alt="<?=$arItem["PREVIEW_PICTURE"]["ALT"]?>"
-                    title="<?=$arItem["PREVIEW_PICTURE"]["TITLE"]?>"
-                    style="float:left"
-            />
-        <?endif;?>
-    </div>
+    <?php if (!empty($arItem["PREVIEW_PICTURE"]["SRC"])): ?>
+        <div class="review-img-wrap">
+            <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+                <img src="<?= $arItem["PREVIEW_PICTURE"]["SRC"] ?>" alt="img">
+            </a>
+        </div>
+    <?php else: ?>
+        <div class="review-img-wrap">
+            <a href="<?= $arItem["DETAIL_PAGE_URL"] ?>">
+                <img class="preview_picture" src="<?= SITE_TEMPLATE_PATH ?>/assets/img/rew/no_photo.jpg" alt="img">
+            </a>
+        </div>
+    <?php endif; ?>
 </div>
+
 
 <?endforeach;?>
 <?if($arParams["DISPLAY_BOTTOM_PAGER"]):?>

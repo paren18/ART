@@ -21,10 +21,9 @@ IncludeTemplateLangFile(__FILE__);
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/assets/js/jquery.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/assets/js/owl.carousel.min.js");
     $APPLICATION->AddHeadScript(SITE_TEMPLATE_PATH."/assets/js/scripts.js");
+    $APPLICATION->AddHeadString('<link rel="icon" type="image/vnd.microsoft.icon" href="<?=SITE_TEMPLATE_PATH?>/assets/img/favicon.ico">');
+    $APPLICATION->AddHeadString('<link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/assets/img/favicon.ico">');
     ?>
-
-    <link rel="icon" type="image/vnd.microsoft.icon" href="<?=SITE_TEMPLATE_PATH?>/assets/img/favicon.ico">
-    <link rel="shortcut icon" href="<?=SITE_TEMPLATE_PATH?>/assets/img/favicon.ico">
 
 </head>
 
@@ -63,7 +62,7 @@ IncludeTemplateLangFile(__FILE__);
 	array(
 		"FORGOT_PASSWORD_URL" => "/ekz1/login/?forgot_password=yes",
 		"PROFILE_URL" => "/ekz1/login/profil.php",
-		"REGISTER_URL" => "/ekz1/login/?register=yes",
+		"REGISTER_URL" => "",
 		"SHOW_ERRORS" => "N",
 		"COMPONENT_TEMPLATE" => "demo"
 	),
